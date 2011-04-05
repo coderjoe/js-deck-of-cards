@@ -1,43 +1,51 @@
 <html>
     <head>
         <title>Deck of Cards in Javascript</title>
-        <script src="deck.js" type="text/javascript"></script>
         <script src="card.js" type="text/javascript"></script>
+        <script src="deck.js" type="text/javascript"></script>
         <script src="shuffle_methods.js" type="text/javascript"></script>
         <script src="deck_types.js" type="text/javascript"></script>
+        <script src="page.js" type="text/javascript"></script>
 
         <style type="text/css">
-            #deck, #hand {
+            div.output {
+                float:left;
+                width: 26%;
+                margin-left: auto;
+                margin-right: auto;
                 border: 1px solid black;
             }
         </style>
 
     </head>
-    <body>
+    <body onload="displayAll();">
         <div>
+            <input type="button" id="shuffle" value="Shuffle" onclick="shuffleDecks();displayAll();"/>
             <label for="deal">Deal Size</label>
-            <input type="text" id="deal_size"/>
-            <input type="button" id="deal" value="Deal"/>
+            <input type="text" id="deal_size" value="5"/>
+            <input type="button" id="deal" value="Deal" onclick="dealDecks();displayAll();"/>
+            <input type="button" id="reset" value="Reset" onclick="resetDecks();displayAll();" />
         </div>
 
-        <div>
-            <h1>Poker Deck</h1>
-            <div id="pokerdeck"></div>
-        </div>
-        <div>
-            <h1>Poker Hand</h1>
-            <div id="pokerhand"></div>
+        <div class="output">
+           Poker Hand
+            <p id="pokerhand"></p>
+             Poker Deck
+            <p id="pokerdeck"></p>
         </div>
 
-        <div>
-            <h1>Silly Deck</h1>
-            <div id="pokerdeck"></div>
-        </div>
-        <div>
-            <h1>Silly Hand</h1>
-            <div id="pokerhand"></div>
+        <div class="output">
+           Silly Hand
+            <p id="sillyhand"></p>
+             Silly Deck
+            <p id="sillydeck"></p>
         </div>
 
-
+        <div class="output">
+             Euchre Hand
+            <p id="euchrehand"></p>
+             Euchre Deck
+            <p id="euchredeck"></p>
+      </div>
         </body>
 </html>

@@ -14,6 +14,13 @@ function Deck( card_types, shuffle_method ) {
 }
 
 /*
+ * Deck accessor
+ */
+Deck.prototype.get = function() {
+    return this.deck;
+}
+
+/*
  * Set the shuffle method outside of constructor
  */
 Deck.prototype.setShuffleMethod = function( shuffle_method ) {
@@ -49,4 +56,24 @@ Deck.prototype.reset = function() {
  */
 Deck.prototype.toString = function() {
     return this.deck.join(', ');
+};
+
+/*
+ * A utility function to help with the creation of decks with multiple suits
+ * it makes the following assumptions.
+ *
+ * 1) Card names are listed in value order
+ * 2) Every card  name is present once in each suit
+ */
+DeckBuilder = {
+    build: function( card_names, card_suits ) {
+        var deck = [];
+        for( var s = 0; s < card_suits.length; s++ ) {
+            for( var n = 0; n < card_names.length; n++ ) {
+                deck.push( new Card( n+1, card_names[n], card_suits[s] ) );
+            }
+        }
+
+        return deck;
+    }
 };
