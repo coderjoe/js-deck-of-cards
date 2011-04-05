@@ -8,7 +8,7 @@ function Deck( card_types, shuffle_method ) {
     }
 
     //Use slice to clone the array as opposed to storing a reference... making this.cards the same as this.deck
-    this.cards = card_types.slice(0);
+    this.fresh_deck = card_types.slice(0);
     this.deck = card_types.slice(0);
     this.shuffleMethod = shuffle_method;
 }
@@ -41,19 +41,7 @@ Deck.prototype.shuffle = function() {
  */
 Deck.prototype.reset = function() {
     //clone the array as opposed to referencing
-    this.deck = this.cards.slice(0);
-};
-
-/*
- * Display the ordinal value of a given card type in the deck
- */
-Deck.prototype.valueOf = function( card ) {
-    var i = this.cards.indexOf( card );
-    if( i < 0 ) {
-        throw 'InvalidCardException';
-    }
-
-    return i;
+    this.deck = this.fresh_deck.slice(0);
 };
 
 /*
@@ -62,9 +50,3 @@ Deck.prototype.valueOf = function( card ) {
 Deck.prototype.toString = function() {
     return this.deck.join(', ');
 };
-
-/*
- * A utility function to help with the creation of decks with multiple suits
- */
-Deck.builder = function( card_names, card_suits ) {
-}
