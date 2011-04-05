@@ -7,8 +7,9 @@ function Deck( card_types, shuffle_method ) {
         throw 'Undefined Shuffle Method';
     }
 
-    this.cards = card_types;
-    this.deck = card_types;
+    //Use slice to clone the array as opposed to storing a reference... making this.cards the same as this.deck
+    this.cards = card_types.slice(0);
+    this.deck = card_types.slice(0);
     this.shuffleMethod = shuffle_method;
 }
 
@@ -25,7 +26,7 @@ Deck.prototype.setShuffleMethod = function( shuffle_method ) {
  *
  */
 Deck.prototype.deal = function( num_cards ) {
-    return this.cards.splice(0,num_cards);
+    return this.deck.splice(0,num_cards);
 };
 
 /*
@@ -39,7 +40,8 @@ Deck.prototype.shuffle = function() {
  * Reset the deck to an unshuffled state
  */
 Deck.prototype.reset = function() {
-    this.deck = this.cards;
+    //clone the array as opposed to referencing
+    this.deck = this.cards.slice(0);
 };
 
 /*
@@ -47,6 +49,18 @@ Deck.prototype.reset = function() {
  */
 Deck.prototype.toString = function() {
     return this.deck.join(', ');
+}
+
+/*
+ * Display the ordinal value of a given card type in the deck
+ */
+Deck.prototype.valueOf = function( card ) {
+    var i = this.cards.indexOf( card );
+    if( i < 0 ) {
+        throw 'InvalidCardException';
+    }
+
+    return i;
 }
 
 /*
